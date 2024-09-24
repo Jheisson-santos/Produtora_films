@@ -1,4 +1,3 @@
-import filme from "../controllers/filme.js";
 import db from "../db.js";
 
 const Schema = db.Schema;

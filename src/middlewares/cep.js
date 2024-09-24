@@ -6,6 +6,7 @@ const cep = (req,res,next)=>{
         .then((response)=>{
             req.body.endereco = response.data
             delete req.body.cep
+
             next()
         })
         .catch((err)=>{
