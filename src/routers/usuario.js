@@ -1,13 +1,15 @@
 import express from "express"
 import usuario from "../controllers/usuario.js"
+import token from "../middlewares/token.js";
+import role from "../middlewares/roles.js"
 
 const router = express.Router()
 
-router.get('/', usuario.index)
-router.get('/:id', usuario.show)
-router.post('/', usuario.store)
-router.put('/:id', usuario.update)
-router.delete('/:id', usuario.destroy)
-// router.post("/login", usuario.login)
-router.post("/singup", usuario.singup)
+router.get('/', token , role(["admin", "user"]) , usuario.index)
+router.get('/:id',token, usuario.show)
+router.post('/', token, role(["admin"]),usuario.store)
+router.put('/:id', token,usuario.update)
+router.delete('/:id',token, usuario.destroy)
+router.post("/login", token,usuario.login)
+router.post("/singup", token, usuario.singup)
 export default router

@@ -27,6 +27,11 @@ usuarioSchema.pre("save", async function(next){
     this.senha = hash
     next()
 })
+
+usuarioSchema.methods.senhaCorreta = async function(senhaCheck){
+    return await bcrypt.compare(senhaCheck, this.senha)
+}
+
 const User = db.model("User", usuarioSchema)
 export default User
 
