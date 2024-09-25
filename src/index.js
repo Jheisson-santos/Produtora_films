@@ -1,4 +1,5 @@
 import express from "express";
+import "dotenv/config";
 import Produtora from "./routers/produtora.js"; 
 import Diretor from "./routers/diretor.js";
 import Filme from "./routers/filme.js"
